@@ -10,9 +10,9 @@ var, let, const;
 
 ### Classes &amp; Modules;
 
-### Transpilation
+### Transpilation;
 
-### Iterators &amp; Generators
+### Iterators &amp; Generators;
 
 
 ### Hoisting;
