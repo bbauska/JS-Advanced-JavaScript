@@ -6,8 +6,7 @@ be introduced to JavaScript's functional programming style and you will apply
 everything you learn to build a simple application in various JavaScript frameworks 
 and libraries for backend and frontend development
 
-## Advanced JavaScript - Covering Scope, Variables, Arrow Functions, Classes &amp; 
-## Modules, Transpilation, Iterators &amp; Generators.
+## Advanced JavaScript - Covering Scope, Variables, Arrow Functions, Classes &amp; Modules, Transpilation, Iterators &amp; Generators
 
 ### Scope;
 
