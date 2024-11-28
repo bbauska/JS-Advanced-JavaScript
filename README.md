@@ -14,6 +14,10 @@ and libraries for backend and frontend development
   - Develop asynchronous flows using Promise chaining and async/await syntax
   - Manipulate the DOM with JavaScript
   - Handle JavaScript browser events
+  - Explore Test Driven Development and build code tests with JavaScript code testing frameworks.
+  - List the benefits and drawbacks of functional programming compared to other styles
+  - Construct applications with the Node.js backend framework and the React frontend framework
+
 
 ### Scope;
 
