@@ -9,11 +9,11 @@ and libraries for backend and frontend development
 ## Advanced JavaScript - Covering Scope, Variables, Arrow Functions, Classes &amp; Modules, Transpilation, Iterators &amp; Generators
 
 ## Learning Objectives;
-• Examine major features in ES6 and implement those features to build applications
-• Create promise and callback handlers to work with asynchronous processes
-• Develop asynchronous flows using Promise chaining and async/await syntax
-• Manipulate the DOM with JavaScript
-• Handle JavaScript browser events
+  - Examine major features in ES6 and implement those features to build applications
+  - Create promise and callback handlers to work with asynchronous processes
+  - Develop asynchronous flows using Promise chaining and async/await syntax
+  - Manipulate the DOM with JavaScript
+  - Handle JavaScript browser events
 
 ### Scope;
 
