@@ -7,7 +7,7 @@ everything you learn to build a simple application in various JavaScript framewo
 and libraries for backend and frontend development
 
 ## Advanced JavaScript - Covering Scope, Variables, Arrow Functions, Classes &amp; 
-Modules, Transpilation, Iterators &amp; Generators.
+## Modules, Transpilation, Iterators &amp; Generators.
 
 ### Scope;
 
