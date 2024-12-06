@@ -39,6 +39,7 @@ inside the new function scope cannot be accessed from the parent scope; however,
 function scope has access to variables in the parent scope.
 To create a variable with function scope, we must declare the variable with the var
 keyword. For example:
+```
 var example = 5;
 The following snippet provides an example of function scope:
 var example = 5;
@@ -49,6 +50,7 @@ console.log( testVariable ); // Expect output: 10
 }
 test();
 console.log( testVariable ); // Expect reference error
+```
 
 Snippet 1.1: Function Scope
 Parent scope is simply the scope of the section of code that the function was defined
@@ -68,10 +70,12 @@ instantiation of an entity to the top of the scope it was declared in, regardles
 in the scope block it is defined. Functions and variables declared using var are hoisted
 in JavaScript; that is, a function or a variable can be used before it has been declared.
 The following code demonstrates this, as follows:
+```
 example = 5; // Assign value
 console.log( example ); // Expect output: 5
 var example; // Declare variable
 Snippet 1.2: Function Scope Hoisting
+```
 Note
 Since a hoisted variable that's been declared with var can be used before it
 is declared, we have to be careful to not use that variable before it has been
@@ -84,6 +88,7 @@ can be placed anywhere in the code to define a new scope block. If statements, l
 functions, and any other curly brace pairs will have their own block scope. This includes
 floating curly brace pairs not associated with a keyword (if, for, etc). The code in the
 following snippet is an example of the block scope rules:
+```
 // Top level scope
 function scopeExample() {
 // Scope block 1
@@ -95,6 +100,7 @@ if ( true ) { /* Scope block 3 */ } else { /* Scope block 4 */ }
 Understanding Scope | 5
 }
 // Top level scope
+```
 Snippet 1.3: Block Scope
 Variables declared with the keywords let and const have block scope. When a variable
 is declared with block scope, it does NOT have the same variable hoisting as variables
@@ -104,12 +110,14 @@ variables that are created with block scope are subject to the Temporal Dead Zon
 (TDZ). The TDZ is the period between when a scope is entered and when a variable
 is declared. It ends when the variable is declared rather than assigned. The following
 example demonstrates the TDZ:
+```
 // console.log( example ); // Would throw ReferenceError
 let example;
 console.log( example ); // Expected output: undefined
 example = 5;
 console.log( example ); // Expected output: 5
 Snippet 1.4: Temporal Dead Zone
+```
 Note
 If a variable is accessed inside the Temporal Dead Zone, then a runtime error will
 be thrown. This is important because it allows our code to be built more robustly
@@ -146,6 +154,7 @@ variables (call it scope) and assign it the value a third scope.
 13. Call fn1 and observe its output
 Code
 index.js:
+```
 function fn1(){
 console.log('Scope 1');
 Understanding Scope | 7
@@ -162,6 +171,7 @@ let scope = 'a third scope';
 console.log(scope);
 }
 }
+```
 fn1();
 https://bit.ly/2RoOotW
 Snippet 1.5: Block implementation output
@@ -196,13 +206,16 @@ variables in JavaScript. All variables created with var can be reassigned, have 
 scope, and have variable hoisting. This means that variables created with var are hoisted
 to the top of the scope block, where they are defined and can be accessed before
 declaration. The following snippet demonstrates this, as follows:
+```
 // Referenced before declaration
 console.log( example ); // Expect output: undefined
 var example = 'example';
+```
 Snippet 1.6: Variables created using var are hoisted
 Since variables that are created with the keyword var are not constants, they can be
 created, assigned, and reassigned a value at will. The following code demonstrates this
 aspect of the functionality of var:
+```
 // Declared and assigned
 var example = { prop1: 'test' };
 console.log( 'example:', example );
@@ -211,6 +224,8 @@ console.log( 'example:', example );
 example = 5;
 
 console.log( example ); // Expect output: 5
+```
+
 Snippet 1.7: Variables created using var are not constant
 Variables created with var can be reassigned at any time and once the variable is
 created, it can be accessed from anywhere in the function, even before the original
@@ -218,6 +233,7 @@ declaration point.
 The let keyword functions similar to the keyword var. As expected, the keyword let
 allows us to declare a variable that can be reassigned at any time. This is shown in the
 following code:
+```
 // Declared and initialized
 let example = { prop1: 'test' };
 console.log( 'example:', example );
@@ -225,6 +241,7 @@ console.log( 'example:', example );
 // Value reassigned
 example = 5;
 console.log( example ); // Expect output: 5
+```
 Snippet 1.8: Variables created with let are not constant
 There are two significant differences between let and var. Where let and var differ is
 their scoping and variable hoisting properties. Variables declared with let are scoped
@@ -234,20 +251,24 @@ Variables declared with let are not subject to variable hoisting. This means tha
 accessing a variable declared with let before the assignment will throw a runtime error.
 As discussed earlier, this is the Temporal Dead Zone. An example of this is shown in the
 following code:
+```
 // Referenced before declaration
 console.log( example );
 // Expect ReferenceError because example is not defined
 let example = 'example';
+```
 Snippet 1.9: Variables created with let are not hoisted
 
 The last variable declaration keyword is const. The const keyword has the same scoping
 and variable hoisting rules as the let keyword; variables declared with const have block
 scoping and do not get hoisted to the top of the scope. This is shown in the following
 code:
+```
 // Referenced before declaration
 console.log( example );
 // Expect ReferenceError because example is not defined
 const example = 'example';
+```
 Snippet 1.10: Variables created with const are not hoisted
 The key difference between const and let is that const signifies that the identifier will
 not be reassigned. The const identifier signifies a read-only reference to a value. In
@@ -259,6 +280,7 @@ the value of the variable cannot be overwritten. However, the array content or o
 properties can be changed. The contents of an array can be modified with functions
 such as push(), pop(), or map() and object properties can be added, removed, or
 updated. This is shown in the following code:
+```
 // Declared and initialized
 const example = { prop1: 'test' };
 // Variable reassigned
@@ -267,6 +289,7 @@ example = 5;
 // Object property updated
 example.prop1 = 5;
 // Expect no error because subproperty was modified
+```
 Snippet 1.11: Variables created with const are constant but not immutable
 Declaring Variables | 11
 To understand the different keywords in more detail, refer to the following table:
@@ -309,6 +332,7 @@ Not hoisted 2 was not able to be changed.
 18. Log the string notHoisted2 updated. Now is: and the value of notHoisted2.
 Code
 index.js:
+```
 var hoisted = 'this got hoisted';
 try{
 console.log(notHoisted1);
@@ -322,6 +346,7 @@ try{
 notHoisted2 = 'new value';
 } catch(err){}
 notHoisted2.push(5);
+```
 Snippet 1.12: Updating the contents of the object
 https://bit.ly/2RDEynv
 Introducing Arrow Functions | 13
@@ -353,7 +378,9 @@ allow for reuse.
 When creating an arrow function, all we need to do is remove the function keyword and
 place an arrow between the function arguments and function body. Arrow functions are
 denoted with the following syntax:
+```
 ( arg1, arg2, ..., argn ) => { /* Do function stuff here */ }
+```
 Snippet 1.13: Arrow function syntax
 As you can see from the preceding syntax, arrow functions are a more concise way of
 writing functions in JavaScript. They can make our code more concise and easier to
@@ -379,10 +406,12 @@ between the function arguments and the function body.
 3. Call both functions and compare the output.
 Code
 index.js:
+```
 const fn1 = function( a, b ) { return a + b; };
 const fn2 = ( a, b ) => { return a + b; };
 Introducing Arrow Functions | 15
 console.log( fn1( 3 ,5 ), fn2( 3, 5 ) );
+```
 Snippet 1.14: Calling the functions
 https://bit.ly/2M6uKwN
 Outcome
@@ -399,22 +428,27 @@ a simple identifier. If we include a default value or perform operations in the 
 arguments, then we must include the parentheses. For example, if we include a default
 parameter, then we will need the parentheses around the arguments. These two rules
 are shown in the following code:
+```
 // Single argument arrow function
 arg1 => { /* Do function stuff here */ }
 // Non simple identifier function argument
 ( arg1 = 10 ) => { /* Do function stuff here */ }
+```
 Snippet 1.15: Single argument arrow function
 16 | Introducing ECMAScript 6
 If we create an arrow function with no arguments, then we need to include the
 parentheses, but they will be empty. This is shown in the following code:
+```
 // No arguments passed into the function
 ( ) => { /* Do function stuff here */ }
+```
 Snippet 1.16: No argument
 Arrow functions can also have varied syntax, depending on the body of the function. As
 expected, if the body of the function is multiline, then we must surround it with curly
 braces. However, if the body of the function is a single line, then we do not need to
 include the curly braces around the body of the function. This is shown in the following
 code:
+```
 // Multiple line body arrow function
 ( arg1, arg2 ) => {
 console.log( `This is arg1: ${arg1}` );
@@ -423,16 +457,19 @@ console.log( `This is arg2: ${arg2}` );
 }
 // Single line body arrow function
 ( arg1, arg2 ) => console.log( `This is arg1: ${arg1}` )
+```
 Snippet 1.17: Single line body
 When using arrow functions, we may also exclude the return keyword if the function
 is a single line. The arrow function automatically returns the resolved value of the
 expression on that line. This syntax is shown in the following code:
+```
 // With return keyword - not necessary
 ( num1, num2 ) => { return ( num1 + num2 ) }
 // If called with arguments num1 = 5 and num2 = 5, expected output is 10
 // Without return keyword or braces
 ( num1, num2 ) => num1 + num2
 // If called with arguments num1 = 5 and num2 = 5, expected output is 10
+```
 Snippet 1.18: Single line body when value is returned
 Introducing Arrow Functions | 17
 Since arrow functions with single expression bodies can be defined without the curly
@@ -440,6 +477,7 @@ braces, we need special syntax to allow us to split the single expression over m
 lines. To do this, we can wrap the multi-line expression in parentheses. The JavaScript
 interpreter sees that the line are wrapped in parentheses and treats it as if it were a
 single line of code. This is shown in the following code:
+```
 // Arrow function with a single line body
 // Assume numArray is an array of numbers
 ( numArray ) => numArray.filter( n => n > 5).map( n => n - 1 ).every( n => n
@@ -451,6 +489,7 @@ numArray.filter( n => n > 5)
 .map( n => n - 1 )
 .every( n => n < 10 )
 )
+```
 Snippet 1.19: Single line expression broken into multiple lines
 If we have a single line arrow function returning an object literal, we will need special
 syntax. In ES6, scope blocks, function bodies, and object literals are all defined with
@@ -460,8 +499,10 @@ either function body curly braces or scope block curly braces. To do this, we su
 the returned object literal with parentheses. This instructs the JavaScript engine to
 interpret curly braces inside the parentheses as an expression instead of a function
 body or scope block declaration. This is shown in the following code:
+```
 // Arrow function with an object literal in the body
 ( num1, num2 ) => ( { prop1: num1, prop2: num2 } ) // Returns an object
+```
 Snippet 1.20: Object literal return value
 18 | Introducing ECMAScript 6
 When using arrow functions, we must be careful of the scope that these functions are
@@ -512,11 +553,13 @@ keyword.
 Surround the returned object with parentheses.
 Code
 index.js:
+```
 let fn1 = ( a, b ) => { … };
 let fn2 = ( a, b ) => a * b;
 let fn3 = a => { … };
 let fn4 = () => { … };
 let fn5 = ( a ) => ( … );
+```
 Snippet 1.21: Arrow function conversion
 https://bit.ly/2M6qSfg
 Outcome
@@ -558,6 +601,7 @@ be parsed as part of the template literal and will result in a newline in the ou
 replicate this with normal strings, we would have to use the \n character to generate a
 new line. With template literals, we can break the line in the template literal source and
 achieve the same expected output. An example of this is shown in the following code:
+```
 // Using normal strings
 console.log( 'This is line 1\nThis is line 2' );
 // Expected output: This is line 1
@@ -567,6 +611,7 @@ console.log( `This is line 1
 This is line 2` );
 // Expected output: This is line 1
 // This is line 2
+```
 Snippet 1.23: Template literal multi-line syntax
 Exercise 5: Converting to Template Literals
 To convert standard string objects to template literals to demonstrate the power of
@@ -579,9 +624,11 @@ template literal.
 22 | Introducing ECMAScript 6
 Code
 index.js:
+```
 let a = 5, b = 10;
 console.log( a + ' + ' + b + ' is equal to ' + ( a + b ) );
 console.log( `${a} + ${b} is equal to ${a + b}` );
+```
 Snippet 1.24: Template literal and string comparison
 https://bit.ly/2RD5jbC
 Outcome
