@@ -44,9 +44,9 @@ var example = 5;
 The following snippet provides an example of function scope:
 var example = 5;
 function test() {
-var testVariable = 10;
-console.log( example ); // Expect output: 5
-console.log( testVariable ); // Expect output: 10
+  var testVariable = 10;
+  console.log( example ); // Expect output: 5
+  console.log( testVariable ); // Expect output: 10
 }
 test();
 console.log( testVariable ); // Expect reference error
@@ -91,15 +91,14 @@ following snippet is an example of the block scope rules:
 ```
 // Top level scope
 function scopeExample() {
-// Scope block 1
-for ( let i = 0; i < 10; i++ ){ /* Scope block 2 */ }
-if ( true ) { /* Scope block 3 */ } else { /* Scope block 4 */ }
-// Braces without keywords create scope blocks
-{ /* Scope block 5 */ }
-// Scope block 1
-Understanding Scope | 5
+  // Scope block 1
+  for ( let i = 0; i < 10; i++ ){ /* Scope block 2 */ }
+  if ( true ) { /* Scope block 3 */ } else { /* Scope block 4 */ }
+  // Braces without keywords create scope blocks
+  { /* Scope block 5 */ }
+  // Scope block 1
+  Understanding Scope | 5
 }
-// Top level scope
 ```
 Snippet 1.3: Block Scope
 Variables declared with the keywords let and const have block scope. When a variable
@@ -116,7 +115,6 @@ let example;
 console.log( example ); // Expected output: undefined
 example = 5;
 console.log( example ); // Expected output: 5
-Snippet 1.4: Temporal Dead Zone
 ```
 Note
 If a variable is accessed inside the Temporal Dead Zone, then a runtime error will
@@ -124,7 +122,6 @@ be thrown. This is important because it allows our code to be built more robustl
 with fewer semantic errors arising from variable declaration.
 To get a better understanding of scope blocks, refer to the following table:
 Figure 1.1: Function Scope versus Block Scope
-6 | Introducing ECMAScript 6
 In summary, scope provides us with a way to separate variables and restrict access
 between blocks of code. Variable identifier names can be reused between blocks
 of scope. All new scope blocks that are created can access the parent scope, or the
@@ -151,29 +148,28 @@ different scope.
 11. Create a variable inside the scope block (scope 3) with the same name as the
 variables (call it scope) and assign it the value a third scope.
 12. Log the new variable's value.
-13. Call fn1 and observe its output
-Code
+13. Call fn1 and observe its output Code
 index.js:
 ```
 function fn1(){
-console.log('Scope 1');
-Understanding Scope | 7
-let scope = 5;
-console.log(scope);
-{
-console.log('Scope 2');
-let scope = 'different scope';
-console.log(scope);
-}
-{
-console.log('Scope 3');
-let scope = 'a third scope';
-console.log(scope);
-}
+  console.log('Scope 1');
+    let scope = 5;
+    console.log(scope);
+  {
+    console.log('Scope 2');
+    let scope = 'different scope';
+    console.log(scope);
+  }
+  {
+    console.log('Scope 3');
+    let scope = 'a third scope';
+    console.log(scope);
+  }
 }
 ```
-fn1();
-https://bit.ly/2RoOotW
+// fn1();
+// https://bit.ly/2RoOotW
+
 Snippet 1.5: Block implementation output
 Outcome
 Figure 1.2: Scope outputs
@@ -184,7 +180,6 @@ scope was created inside each function and how block scope was created inside ea
 set of curly braces. We discussed the variable declaration keywords for each type of
 scope, var for function scope and let/const for block scope. Finally, we covered the
 basics of hoisting with both function and block scope.
-8 | Introducing ECMAScript 6
 Declaring Variables
 Basic JavaScript uses the keyword var for variable declaration. ECMAScript 6
 introduced two new keywords to declare variables; they are let and const. In the world
@@ -291,7 +286,6 @@ example.prop1 = 5;
 // Expect no error because subproperty was modified
 ```
 Snippet 1.11: Variables created with const are constant but not immutable
-Declaring Variables | 11
 To understand the different keywords in more detail, refer to the following table:
 Figure 1.3: Differences between var, let, and const
 Now that we understand the nuances among var, let, and const, we can decide on
@@ -335,17 +329,17 @@ index.js:
 ```
 var hoisted = 'this got hoisted';
 try{
-console.log(notHoisted1);
+  console.log(notHoisted1);
 } catch(err){}
-let notHoisted1 = 5;
+  let notHoisted1 = 5;
 try{
-console.log(notHoisted2);
+  console.log(notHoisted2);
 } catch(err){}
-const notHoisted2 = [1,2,3];
+  const notHoisted2 = [1,2,3];
 try{
-notHoisted2 = 'new value';
+  notHoisted2 = 'new value';
 } catch(err){}
-notHoisted2.push(5);
+  notHoisted2.push(5);
 ```
 Snippet 1.12: Updating the contents of the object
 https://bit.ly/2RDEynv
