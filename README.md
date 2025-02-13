@@ -27,11 +27,11 @@ association of a name to an entity, such as a variable or function, is valid. Ja
 the following two distinct types of scope:
 • Function scope
 • Block scope
-Understanding Scope | 3
 Until ES6, function scope was the only form of scope in JavaScript; all variable and
 function declarations followed function scope rules. Block scope was introduced in ES6
 and is used only by the variables declared with the new variable declaration keywords
 let and const. These keywords are discussed in detail in the Declaring Variables section.
+
 Function Scope
 Function scope in JavaScript is created inside functions. When a function is declared, a
 new scope block is created inside the body of that function. Variables that are declared
@@ -62,13 +62,14 @@ where the function is defined.
 Note
 Parent scope is the block of code, which the function is defined in. It is not the
 block of code in which the function is called.
-4 | Introducing ECMAScript 6
+
 Function Scope Hoisting
 When a variable is created with function scope, it's declaration automatically gets
 hoisted to the top of the scope. Hoisting means that the interpreter moves the
 instantiation of an entity to the top of the scope it was declared in, regardless of where
 in the scope block it is defined. Functions and variables declared using var are hoisted
 in JavaScript; that is, a function or a variable can be used before it has been declared.
+
 The following code demonstrates this, as follows:
 ```
 example = 5; // Assign value
@@ -76,12 +77,14 @@ console.log( example ); // Expect output: 5
 var example; // Declare variable
 Snippet 1.2: Function Scope Hoisting
 ```
+
 Note
 Since a hoisted variable that's been declared with var can be used before it
 is declared, we have to be careful to not use that variable before it has been
 assigned a value. If a variable is accessed before it has been assigned a value, it will
 return the value as undefined, which can cause problems, especially if variables
 are used in the global scope.
+
 Block Scope
 A new block scope in JavaScript is created with curly braces ({}). A pair of curly braces
 can be placed anywhere in the code to define a new scope block. If statements, loops,
@@ -100,6 +103,7 @@ function scopeExample() {
   Understanding Scope | 5
 }
 ```
+
 Snippet 1.3: Block Scope
 Variables declared with the keywords let and const have block scope. When a variable
 is declared with block scope, it does NOT have the same variable hoisting as variables
@@ -116,6 +120,7 @@ console.log( example ); // Expected output: undefined
 example = 5;
 console.log( example ); // Expected output: 5
 ```
+
 Note
 If a variable is accessed inside the Temporal Dead Zone, then a runtime error will
 be thrown. This is important because it allows our code to be built more robustly
@@ -131,6 +136,7 @@ function scope with the var keyword, and these variables are hoisted to the top 
 scope. Block scope is a new ES6 feature. A new block scope is created for each set of
 curly braces. Variables are added to block scope with the let and const keywords. The
 variables that are added are not hoisted and are subject to the TDZ.
+
 Exercise 1: Implementing Block Scope
 To implement block scope principles with variables, perform the following steps:
 1. Create a function called fn1 as shown (function fn1()).
@@ -172,6 +178,7 @@ function fn1(){
 
 Snippet 1.5: Block implementation output
 Outcome
+
 Figure 1.2: Scope outputs
 You have successfully implemented block scope in JavaScript.
 In this section, we covered the two types of JavaScript scope, function and block scope,
@@ -206,6 +213,7 @@ declaration. The following snippet demonstrates this, as follows:
 console.log( example ); // Expect output: undefined
 var example = 'example';
 ```
+
 Snippet 1.6: Variables created using var are hoisted
 Since variables that are created with the keyword var are not constants, they can be
 created, assigned, and reassigned a value at will. The following code demonstrates this
@@ -237,6 +245,7 @@ console.log( 'example:', example );
 example = 5;
 console.log( example ); // Expect output: 5
 ```
+
 Snippet 1.8: Variables created with let are not constant
 There are two significant differences between let and var. Where let and var differ is
 their scoping and variable hoisting properties. Variables declared with let are scoped
@@ -252,6 +261,7 @@ console.log( example );
 // Expect ReferenceError because example is not defined
 let example = 'example';
 ```
+
 Snippet 1.9: Variables created with let are not hoisted
 
 The last variable declaration keyword is const. The const keyword has the same scoping
@@ -264,6 +274,7 @@ console.log( example );
 // Expect ReferenceError because example is not defined
 const example = 'example';
 ```
+
 Snippet 1.10: Variables created with const are not hoisted
 The key difference between const and let is that const signifies that the identifier will
 not be reassigned. The const identifier signifies a read-only reference to a value. In
@@ -285,8 +296,10 @@ example = 5;
 example.prop1 = 5;
 // Expect no error because subproperty was modified
 ```
+
 Snippet 1.11: Variables created with const are constant but not immutable
 To understand the different keywords in more detail, refer to the following table:
+
 Figure 1.3: Differences between var, let, and const
 Now that we understand the nuances among var, let, and const, we can decide on
 which one to use. In the professional world, we should always use let and const,
@@ -296,6 +309,7 @@ In summary, var, let, and const all function similarly. The key differences are 
 nature of const, the scope, and the hoisting. Var is function scoped, not constant, and
 hoisted to the top of the scope block. let and const are both block-scoped and not
 hoisted. let is not constant, while, const is constant but immutable.
+
 Exercise 2: Utilizing Variables
 To utilize the var, const, and let variable declaration keywords for variable hoisting and
 reassignment properties, perform the following steps:
@@ -324,6 +338,7 @@ const and assign the value [1,2,3].
 Not hoisted 2 was not able to be changed.
 17. After the try-catch block, push the value 5 onto the array in notHoisted2.
 18. Log the string notHoisted2 updated. Now is: and the value of notHoisted2.
+
 Code
 index.js:
 ```
@@ -341,9 +356,9 @@ try{
 } catch(err){}
   notHoisted2.push(5);
 ```
+
 Snippet 1.12: Updating the contents of the object
 https://bit.ly/2RDEynv
-Introducing Arrow Functions | 13
 Outcome
 Figure 1.4: Hoisting the variables
 You have successfully utilized keywords to declare variables.
@@ -356,6 +371,7 @@ with var and let can be reassigned at will. However, variables created with cons
 be reassigned. Finally, variables created with the keyword var are hoisted to the top of
 the scope block in which they were defined. Variables created with let and const are
 not hoisted.
+
 Introducing Arrow Functions
 Arrow functions, or Fat arrow functions, are a new way to create functions in
 ECMAScript 6. Arrow functions simplify function syntax. They are called fat arrow
@@ -375,6 +391,7 @@ denoted with the following syntax:
 ```
 ( arg1, arg2, ..., argn ) => { /* Do function stuff here */ }
 ```
+
 Snippet 1.13: Arrow function syntax
 As you can see from the preceding syntax, arrow functions are a more concise way of
 writing functions in JavaScript. They can make our code more concise and easier to
@@ -406,6 +423,7 @@ const fn2 = ( a, b ) => { return a + b; };
 Introducing Arrow Functions | 15
 console.log( fn1( 3 ,5 ), fn2( 3, 5 ) );
 ```
+
 Snippet 1.14: Calling the functions
 https://bit.ly/2M6uKwN
 Outcome
@@ -428,14 +446,15 @@ arg1 => { /* Do function stuff here */ }
 // Non simple identifier function argument
 ( arg1 = 10 ) => { /* Do function stuff here */ }
 ```
+
 Snippet 1.15: Single argument arrow function
-16 | Introducing ECMAScript 6
 If we create an arrow function with no arguments, then we need to include the
 parentheses, but they will be empty. This is shown in the following code:
 ```
 // No arguments passed into the function
 ( ) => { /* Do function stuff here */ }
 ```
+
 Snippet 1.16: No argument
 Arrow functions can also have varied syntax, depending on the body of the function. As
 expected, if the body of the function is multiline, then we must surround it with curly
@@ -452,6 +471,7 @@ console.log( `This is arg2: ${arg2}` );
 // Single line body arrow function
 ( arg1, arg2 ) => console.log( `This is arg1: ${arg1}` )
 ```
+
 Snippet 1.17: Single line body
 When using arrow functions, we may also exclude the return keyword if the function
 is a single line. The arrow function automatically returns the resolved value of the
@@ -464,8 +484,8 @@ expression on that line. This syntax is shown in the following code:
 ( num1, num2 ) => num1 + num2
 // If called with arguments num1 = 5 and num2 = 5, expected output is 10
 ```
+
 Snippet 1.18: Single line body when value is returned
-Introducing Arrow Functions | 17
 Since arrow functions with single expression bodies can be defined without the curly
 braces, we need special syntax to allow us to split the single expression over multiple
 lines. To do this, we can wrap the multi-line expression in parentheses. The JavaScript
@@ -484,6 +504,7 @@ numArray.filter( n => n > 5)
 .every( n => n < 10 )
 )
 ```
+
 Snippet 1.19: Single line expression broken into multiple lines
 If we have a single line arrow function returning an object literal, we will need special
 syntax. In ES6, scope blocks, function bodies, and object literals are all defined with
@@ -497,8 +518,8 @@ body or scope block declaration. This is shown in the following code:
 // Arrow function with an object literal in the body
 ( num1, num2 ) => ( { prop1: num1, prop2: num2 } ) // Returns an object
 ```
+
 Snippet 1.20: Object literal return value
-18 | Introducing ECMAScript 6
 When using arrow functions, we must be careful of the scope that these functions are
 called in. Arrow functions follow normal scoping rules in JavaScript, with the exception
 of the this scope. Recall that in basic JavaScript, each function is assigned a scope, that
@@ -509,6 +530,7 @@ subsequently, the variables in that scope, but the scope of this cannot be chang
 an arrow function. Using the .apply(), .call(), or .bind() function modifiers will NOT
 change the scope of an arrow function's this property. If you are in a situation where
 you must bind this to another scope, then you must use a normal JavaScript function.
+
 In summary, arrow functions provide us with a way to simplify the syntax of anonymous
 functions. To write an arrow function, simply omit the function keyword and add an
 arrow between the arguments and function body.
@@ -519,6 +541,7 @@ return keyword and the curly braces around it. However, single-line functions th
 return an object literal must be surrounded with parentheses.
 We can also use parentheses around the function body to break a single line body into
 multiple lines for readability.
+
 Exercise 4: Upgrading Arrow Functions
 To utilize the ES6 arrow function syntax to write functions, perform the following steps:
 1. Refer to the exercises/exercise4/exercise.js file and perform the updates in this
@@ -532,7 +555,6 @@ between the function arguments and function body.
 Remove the curly braces ({}) around the function body. Remove the return
 keyword.
 4. Convert fn3 with Single input argument syntax.
-Introducing Arrow Functions | 19
 Remove the function keyword before the function arguments. Add an arrow
 between the function arguments and function body.
 Remove the parentheses around the function input argument.
@@ -554,11 +576,11 @@ let fn3 = a => { … };
 let fn4 = () => { … };
 let fn5 = ( a ) => ( … );
 ```
+
 Snippet 1.21: Arrow function conversion
 https://bit.ly/2M6qSfg
 Outcome
 Figure 1.6: Converting the function's output
-20 | Introducing ECMAScript 6
 You have successfully utilized the ES6 arrow function syntax to write functions.
 In this section, we introduced arrow functions and demonstrated how they can be used
 to greatly simplify function declaration in JavaScript. First, we covered the basic syntax
@@ -572,6 +594,7 @@ following list:
 line single expression */ )
 • Object literal return value: ( arg1, arg2, argn ) => ( { /* object literal */ }
 )
+
 Learning Template Literals
 Template literals are a new form of string that was introduced in ECMAScript 6. They
 are enclosed by the backtick symbol (``) instead of the usual single or double quotes.
@@ -579,14 +602,16 @@ Template literals allow you to embed expressions in the string that are evaluate
 at runtime. Thus, we can easily create dynamic strings from variables and variable
 expressions. These expressions are denoted with the dollar sign and curly braces (${
 expression }). The template literal syntax is shown in the following code:
+```
 const example = "pretty";
 console.log( `Template literals are ${ example } useful!!!` );
 // Expected output: Template literals are pretty useful!!!
+```
+
 Snippet 1.22: Template literal basic syntax
 Template literals are escaped like other strings in JavaScript. To escape a template
 literal, simply use a backslash (\) character. For example, the following equalities
 evaluate to true: `\`` === "`",`\t` === "\t", and `\n\r` === "\n\r".
-Learning Template Literals | 21
 Template literals allow for multiline strings. Any newline characters that are inserted
 into the source are part of the template literal and will result in a line break in the
 output. In simpler terms, inside a template literal, we can press the Enter key on the
@@ -606,8 +631,11 @@ This is line 2` );
 // Expected output: This is line 1
 // This is line 2
 ```
+
 Snippet 1.23: Template literal multi-line syntax
+
 Exercise 5: Converting to Template Literals
+
 To convert standard string objects to template literals to demonstrate the power of
 template literal expressions, perform the following steps:
 1. Create two variables, a and b, and save numbers into them.
@@ -615,7 +643,6 @@ template literal expressions, perform the following steps:
 strings.
 3. Log the sum of a and b in the format a + b is equal to <result> using a single
 template literal.
-22 | Introducing ECMAScript 6
 Code
 index.js:
 ```
@@ -623,9 +650,11 @@ let a = 5, b = 10;
 console.log( a + ' + ' + b + ' is equal to ' + ( a + b ) );
 console.log( `${a} + ${b} is equal to ${a + b}` );
 ```
+
 Snippet 1.24: Template literal and string comparison
 https://bit.ly/2RD5jbC
 Outcome
+
 Figure 1.7: Logging the sum of the variable's output
 You have successfully converted standard string objects to template literals.
 Template literals allow for expression nesting, that is, new template literals can be put
@@ -634,11 +663,13 @@ the expression, it will be parsed as a new template literal and will not interfe
 the external template literal. In some cases, nesting a template literal is the easiest and
 most readable way to create a string. An example of template literal nesting is shown in
 the following code:
+```
 function javascriptOrCPlusPlus() { return 'JavaScript'; }
 const outputLiteral = `We are learning about ${ `Professional ${
 javascriptOrCPlusPlus() }` }`
+```
+
 Snippet 1.25: Template literal nesting
-Learning Template Literals | 23
 A more advanced form of template literals are tagged template literals. Tagged
 template literals can be parsed with a special function called tag functions, and can
 return a manipulated string or any other value. The first input argument of a tag
@@ -647,6 +678,7 @@ the input string, broken at each template expression. The remaining arguments ar
 values of the template expressions in the string. Tag functions are not called like normal
 functions. To call a tag function, we omit the parentheses and any whitespace around
 the template literal argument. This syntax is shown in the following code:
+```
 // Define the tag function
 function tagFunction( strings, numExp, fruitExp ) {
 const str0 = strings[0]; // "We have"
@@ -659,16 +691,19 @@ const fruit = 'apple', num = 8;
 const output = tagFunction`We have ${num} of ${fruit}. Exciting!`
 console.log( output )
 // Expected output: We have very few of apples. Exciting!!
+```
+
 Snippet 1.26: Tagged template literal example
 A special property named raw is available for the first argument of a tagged template.
 This property returns an array that contains the raw, unescaped, versions of each part
 of the split template literal. This is shown in the following code:
+```
 function tagFunction( strings ){ console.log( strings.raw[0] ); }
 tagFunction`This is line 1. \n This is line 2.`
 // Expected output: "This is line 1. \n This is line 2." The characters
 //'\' and 'n' are not parsed into a newline character
+```
 Snippet 1.27: Tagged template raw property
-24 | Introducing ECMAScript 6
 In summary, template literals allow for the simplification of complicated string
 expressions. Template literals allow you to embed variables and complicated
 expressions into strings. Template literals can even be nested into the expression
@@ -683,12 +718,15 @@ You are building a website for a real estate company. You must build a function 
 takes in an object with property information and returns a formatted string that states
 the property owner, where the property is located (address), and how much they are
 selling it for (price). Consider the following object as input:
+```
 {
 address: '123 Main St, San Francisco CA, USA',
 floors: 2,
 price: 5000000,
 owner: 'John Doe'
 }
+```
+
 Snippet 1.28: Object Input
 To utilize a template literal to pretty-print an object, perform the following steps:
 1. Create a function called parseHouse that takes in an object.
@@ -700,9 +738,9 @@ Main St, San Francisco CA, USA", floors: 2, price: 5000000, owner: "John
 Doe" }
 4. Call the parseHouse function and pass in the house variable.
 5. Log the output.
-Learning Template Literals | 25
 Code
 index.js:
+```
 function parseHouse( property ) {
 return `${property.owner} is selling the property at ${property.address}
 for ${property.price} USD`
@@ -714,9 +752,13 @@ price: 5000000,
 owner: "John Doe"
 };
 console.log( parseHouse( house ) );
+```
+
 Snippet 1.29: Template literal using expressions
 https://bit.ly/2RklKKH
+
 Outcome
+
 Figure 1.8: Template literal output
 You have successfully utilized a template literal to pretty-print an object.
 In this section, we covered template literals. Template literals upgrade strings by
@@ -726,20 +768,23 @@ to escape special characters in template literals and discussed how in-editor ne
 characters in template literals are parsed as newline characters in the output. Finally,
 we covered template literal tagging and tagging functions, which allow us to perform
 more complex template literal parsing and creation.
-26 | Introducing ECMAScript 6
+
 Enhanced Object Properties
 ECMAScript 6 added several enhancements to object literals as part of the ES6
 syntactic sugar. ES6 added three ways to simplify the creation of object literals. These
 simplifications include a more concise syntax for initializing object properties from
 variables, a more concise syntax for defining function methods, and computed object
 property names.
+
 Note
+
 Syntactic sugar is a syntax that is designed to make expressions easier to read and
 express. It makes the syntax "sweeter" because code can be expressed concisely.
 Object Properties
 The shorthand for initializing object properties allows you to make more concise
 objects. In ES5, we needed to define the object properties with a key name and a value,
 as shown in the following code:
+```
 function getPersionES5( name, age, height ) {
 return {
 name: name,
@@ -749,6 +794,8 @@ height: height
 }
 getPersionES5( 'Zachary', 23, 195 )
 // Expected output: { name: 'Zachary', age: 23, height: 195 }
+```
+
 Snippet 1.30: ES5 object properties
 Notice the repetition in the object literal returned by the function. We name the
 property in the object after variable name causing duplication (<code>name: name</
@@ -756,6 +803,7 @@ code>). In ES6, we can shorthand each property and remove the repetition. In ES6
 can simply state the variable in the object literal declaration and it will create a property
 with a key that matches the variable name and a value that matches the variable value.
 This is shown in the following code:
+```
 function getPersionES6( name, age, height ) {
 return {
 Enhanced Object Properties | 27
@@ -766,14 +814,19 @@ height
 }
 getPersionES6( 'Zachary', 23, 195 )
 // Expected output: { name: 'Zachary', age: 23, height: 195 }
+```
+
 Snippet 1.31: ES6 object properties
 As you can see, both the ES5 and ES6 examples output the exact same object. However,
 in a large object literal declaration, we can save a lot of space and repetition by using
 this new shorthand.
+
 Function Declarations
+
 ES6 also added a shorthand for declaring function methods inside objects. In ES5,
 we had to state the property name, then define it as a function. This is shown in the
 following example:
+```
 function getPersonES5( name, age, height ) {
 return {
 name: name,
@@ -783,11 +836,14 @@ getAge: function(){ return age; }
 }
 getPersonES5( 'Zachary', 23, 195 ).getAge()
 // Expected output: 23
+```
+
 Snippet 1.32: ES5 function properties
-28 | Introducing ECMAScript 6
+
 In ES6, we can define a function but with much less work. As with the property
 declaration, we don't need a key and value pair to create the function. The function
 name becomes the key name. This is shown in the following code:
+```
 function getPersionES6( name, age, height ) {
 return {
 name,
@@ -797,6 +853,8 @@ getAge(){ return age; }
 }
 getPersionES6( 'Zachary', 23, 195 ).getAge()
 // Expected output: 23
+```
+
 Snippet 1.33: ES6 function properties
 Notice the difference in the function declaration. We omit the function keyword and
 the colon after the property key name. Once again, this saves us a bit of space and
@@ -808,19 +866,22 @@ way to create a dynamic property whose name is specified by a variable; this is 
 bracket notation, that is, : obj[ expression ] = 'value' . In ES6, we can use this same
 type of notation during the object literal's declaration. This is shown in the following
 example:
+```
 const varName = 'firstName';
 const person = {
 [ varName ] = 'John',
 lastName: 'Smith'
 };
 console.log( person.firstName ); // Expected output: John
+```
 Snippet 1.34: ES6 Computed property
-Enhanced Object Properties | 29
+
 As we can see from the preceding snippet, the property name of varName was
 computed to be firstName. When accessing the property, we simply reference it as
 person.firstName. When creating computed properties in object literals, the value
 that's computed in the brackets does not need to be a variable; it can be almost any
 expression, even a function. An example of this is shown in the following code:
+```
 const varName = 'first';
 function computeNameType( type ) {
 return type + 'Name';
@@ -831,6 +892,8 @@ const person = {
 };
 console.log( person.firstName ); // Expected output: John
 console.log( person.lastName ); // Expected output: Smith
+```
+
 Snippet 1.35: Computed property from function
 In the example shown in the preceding snippet, we created two variables. The first
 contains the string first and the second contains a function that returns a string.
@@ -849,9 +912,9 @@ can create property names from computed expressions during the declaration of th
 object literal. We simply replace the key name with the expression in brackets. These
 three simplifications can save us space in our code and make object literal creation
 easier to read.
-30 | Introducing ECMAScript 6
 
 Exercise 7: Implementing Enhanced Object Properties
+
 You are building a simple JavaScript math package to publish to Node Package Manager
 (NPM). Your module will export an object that contains several constants and functions.
 Using ES6 syntax, create the export object with the following functions and values: the
@@ -873,6 +936,7 @@ returns the subtraction of the two input arguments.
 4. Log the object exportObject.
 Code
 index.js:
+```
 const PI = 3.1415;
 const INCHES_TO_FEET = 0.083333;
 const exportObject = {
@@ -887,9 +951,13 @@ Destructuring Assignment | 31
 }
 };
 console.log( exportObject );
+```
+
 Snippet 1.36: Enhanced object properties
 https://bit.ly/2RLdHWk
+
 Outcome
+
 Figure 1.9: Enhanced object properties output
 You have successfully created objects using ES6 enhanced object properties.
 In this section, we showed you enhanced object properties, a syntactic sugar to help
@@ -897,26 +965,31 @@ condense object property creation into fewer characters. We covered the shorthan
 initializing object properties from variables and functions, and we covered the advanced
 features of computed object properties, that is, a way to create an object property name
 from a computed value, inline, while defining the object.
+
 Destructuring Assignment
 Destructuring assignment is syntax in JavaScript that allows you to unpack values
 from arrays or properties from objects, and save them into variables. It is a very handy
 feature because we can extract data directly from arrays and objects to save into
 variables, all on a single line of code. It is powerful because it enables us to extract
 multiple array elements or object properties in the same expression.
+
 Array Destructuring
 Array destructuring allows us to extract multiple array elements and save them into
 variables. In ES5, we do this by defining each variable with its array value, one variable
 at a time. This makes the code lengthy and increases the time required to write it.
-32 | Introducing ECMAScript 6
+
 In ES6, to destructure an array, we simply create an array containing the variable to
 assign data into, and set it equal to the data array being destructured. The values in the
 array are unpacked and assigned to the variables in the left-hand side array from left to
 right, one variable per array value. An example of basic array destructuring is shown in
 the following code:
+```
 let names = [ 'John', 'Michael' ];
 let [ name1, name2 ] = names;
 console.log( name1 ); // Expected output: 'John'
 console.log( name2 ); // Expected output: 'Michael'
+```
+
 Snippet 1.37: Basic array destructuring
 As can be seen in this example, we have an array of names and we want to destructure
 it into two variables, name1 and name2. We simply surround the variables name1 and
@@ -935,15 +1008,18 @@ is destructured from left to right. Accessing a non-existent element in a JavaSc
 array results in an undefined value to be returned. This undefined value is saved to the
 leftover variables in the variable array. An example of this is shown in the following
 code:
+```
 let names = [ 'John', 'Michael' ];
 let [ name1 ] = names
 let [ name2, name3, name4 ] = names;
-Destructuring Assignment | 33
 console.log( name1 ); // Expected output: 'John'
 console.log( name2 ); // Expected output: 'John'
 console.log( name3 ); // Expected output: 'Michael'
 console.log( name4 ); // Expected output: undefined
+```
+
 Snippet 1.38: Array destructuring with mismatched variable and array items
+
 Note
 We must be careful when destructuring arrays to make sure that we don't
 unintentionally assume that a variable will contain a value. The value of the
@@ -954,24 +1030,29 @@ To ignore a value, simply omit the variable identifier for that array index in t
 hand side of the expression. This syntax can be used to ignore a single item, multiple
 items, or even all the items in an array. Two examples of this are shown in the following
 snippet:
+```
 let names = [ 'John', 'Michael', 'Jessica', 'Susan' ];
 let [ name1,, name3 ] = names;
 // Note the missing variable name for the second array item
 let [ ,,, ] = names; // Ignores all items in the array
 console.log( name1 ); // Expected output: 'John'
 console.log( name3 ); // Expected output: 'Jessica'
+```
 Snippet 1.39: Array destructuring with skipped values
-34 | Introducing ECMAScript 6
+
 Another very useful feature of array destructuring is the ability to set default values for
 variables that are created with destructuring. When we want to add a default value, we
 simply need to set the variable equal to the desired default value in the left-hand side of
 the destructuring expression. If what we are destructuring does not contain an index to
 assign to the variable, then the default value will be used instead. An example of this is
 shown in the following code:
+```
 let [ a = 1, b = 2, c = 3 ] = [ 'cat', null ];
 console.log( a ); // Expected output: 'cat'
 console.log( b ); // Expected output: null
 console.log( c ); // Expected output: 3
+```
+
 Snippet 1.40: Array destructuring with skipped values
 Finally, array destructuring can be used to easily swap values of variables. If we wish to
 swap the value of two variables, we can simply destructure an array into the reversed
@@ -983,6 +1064,7 @@ let b = 5;
 [ a, b ] = [ b, a ];
 console.log( a ); // Expected output: 5
 console.log( b ); // Expected output: 10
+
 Snippet 1.41: Array destructuring with skipped values
 Exercise 8: Array Destructuring
 To extract values from an array using array destructuring assignment, perform the
@@ -993,13 +1075,13 @@ Destructure the first array value into a variable called a. Skip the second valu
 the array.
 Destructure the third value into a variable called b. Attempt to destructure a
 fourth value into a variable called c and provide a default value of 4.
-Destructuring Assignment | 35
 3. Log the value of all of the variables.
 Code
 index.js:
 const data = [ 1, 2, 3 ];
 const [ a, , b, c = 4 ] = data;
 console.log( a, b, c );
+
 Snippet 1.42: Array destructuring
 https://bit.ly/2D2Hm5g
 Outcome
@@ -1013,7 +1095,7 @@ variables are set to undefined, or the default value if specified. We can skip a
 index in the destructuring by leaving a hole in the variables array. Finally, we can use
 destructuring assignment to quickly swap the values of two or more variables in a single
 line of code.
-36 | Introducing ECMAScript 6
+
 Rest and Spread Operators
 ES6 also introduces two new operators for arrays called rest and spread. The rest and
 spread operators are both denoted with three ellipses or periods before an identifier (
@@ -1035,6 +1117,7 @@ an array. The array elements are supplied by the actual arguments that are passe
 the function, excluding the arguments that already have been given a separate name in
 the formal declaration of the function. An example of rest destructuring is shown in the
 following code:
+```
 function fn( num1, num2, ...args ) {
 // Destructures an indefinite number of function parameters into the
 //array args, excluding the first two arguments passed in.
@@ -1042,12 +1125,16 @@ console.log( num1 );
 console.log( num2 );
 console.log( args );
 }
+```
+
 Destructuring Assignment | 37
+```
 fn( 1, 2, 3, 4, 5, 6 );
 // Expected output
 // 1
 // 2
 // [ 3, 4, 5, 6 ]
+```
 Snippet 1.43: Array destructuring with skipped values
 Similar to the arguments object of a JavaScript function, the rest operator contains a
 list of function arguments. However, the rest operator has three distinct differences
@@ -1064,24 +1151,29 @@ The rest parameter can be destructured similar to how we destructure an array. I
 of putting a single variable name inside before the ellipses, we can replace it with
 an array of variables we want to fill. The arguments passed into the function will be
 destructured as expected for an array. This is shown in the following code:
+```
 function fn( ...[ n1, n2, n3 ] ) {
 // Destructures an indefinite number of function parameters into the
 // array args, which is destructured into 3 variables
 console.log( n1, n2, n3 );
 }
 fn( 1, 2 ); // Expected output: 1, 2, undefined
+```
+
 Snippet 1.44: Destructured rest operator
-38 | Introducing ECMAScript 6
 The spread operator allows an iterable object such as an array or string to be expanded
 into multiple arguments (for function calls), array elements (for array literals), or
 key-value pairs (for object expressions). This essentially means that we can expand
 an array into arguments for creating another array, object, or calling a function. An
 example of spread syntax is shown in the following code:
+```
 function fn( n1, n2, n3 ) {
 console.log( n1, n2, n3 );
 }
 const values = [ 1, 2, 3 ];
 fn( ...values ); // Expected output: 1, 2, 3
+```
+
 Snippet 1.45: Spread operator
 In the preceding example, we created a simple function that takes in three inputs
 and logs them to the console. We created an array with three values, then called the
@@ -1097,16 +1189,18 @@ console.log( n1 ); // Expected output: 1
 console.log( n2 ); // Expected output: 2
 console.log( n3 ); // Expected output: 3
 console.log( remaining ); // Expected output: [ 4, 5, 6 ]
+
 Snippet 1.46: Spread operator
 In the preceding snippet, we destructured the first three array elements into three
 variables, n1, n2, and n3. We then captured the remaining array elements with the rest
 operator and destructured them into the variable that remained.
-Destructuring Assignment | 39
+
 In summary, the rest and spread operators allow iterable entities to be expanded into
 many arguments. They are denoted with three ellipses before the identifier name.
 This allows us to capture arrays of arguments in functions or unused items when
 destructuring entities. When we use the rest and spread operators, they must be the
 last arguments that are passed into the expression they are being used in.
+
 Object Destructuring
 Object destructuring is used in a very similar way to array destructuring. Object
 destructuring is used to extract data from an object and assign the values to new
@@ -1114,10 +1208,13 @@ variables. In ES6, we can do this in a single JavaScript expression. To destruct
 object, we surround the variables we want to destructure with curly braces ({}), and
 set that expression equal to the object we are destructuring. A basic example of object
 destructuring is shown in the following code:
+```
 const obj = { firstName: 'Bob', lastName: 'Smith' };
 const { firstName, lastName } = obj;
 console.log( firstName ); // Expected output: 'Bob'
 console.log( lastName ); // Expected output: 'Smith'
+```
+
 Snippet 1.47: Object destructuring
 In the preceding example, we created an object with the keys firstName and lastName.
 We then destructured this object into the variables firstName and lastName. Notice
@@ -1128,11 +1225,13 @@ When doing basic object destructuring, the name of the parameter in the object
 and the name of the variable we are assigning it to must match. If there is no
 matching parameter for a variable we are trying to destructure, then the variable
 will be set to undefined.
-40 | Introducing ECMAScript 6
+```
 const obj = { firstName: 'Bob', lastName: 'Smith' };
 const { firstName, middleName } = obj;
 console.log( firstName ); // Expected output: 'Bob'
 console.log( middleName ); // Expected output: undefined
+```
+
 Snippet 1.48: Object destructuring with no defined key
 As we saw, the middleName key does not exist in the object. When we try to destructure
 the key and save it into the variable, it is unable to find a value and the variable is set to
@@ -1141,10 +1240,12 @@ With advanced object destructuring syntax, we can save the key that's extracted 
 a variable with a different name. This is done by adding a colon and the new variable
 name after the key name in the destructuring notation. This is shown in the following
 code:
+```
 const obj = { firstName: 'Bob', lastName: 'Smith' };
 const { firstName: first, lastName } = obj;
 console.log( first ); // Expected output: 'Bob'
 console.log( lastName ); // Expected output: 'Smith'
+```
 Snippet 1.49: Object destructuring into new variable
 In the preceding example, we could clearly see that we are destructuring the firstname
 key from the object and saving it into the new variable, called first. The lastName key is
@@ -1153,10 +1254,13 @@ Much like with array destructuring, we can destructure an object and provide a d
 value. If a default value is provided and the key we are attempting to destructure does
 not exist in the object, then the variable will be set to the default value instead of
 undefined. This is shown in the following code:
+```
 const obj = { firstName: 'Bob', lastName: 'Smith' };
 const { firstName = 'Samantha', middleName = 'Chris' } = obj;
 console.log( firstName ); // Expected output: 'Bob'
 console.log( middleName ); // Expected output: 'Chris'
+```
+
 Snippet 1.50: Object destructuring with default values
 Destructuring Assignment | 41
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
