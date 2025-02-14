@@ -131,6 +131,7 @@ variables that are created with block scope are subject to the Temporal Dead Zon
 (TDZ). The TDZ is the period between when a scope is entered and when a variable
 is declared. It ends when the variable is declared rather than assigned. The following
 example demonstrates the TDZ:
+
 ```
 // console.log( example ); // Would throw ReferenceError
 let example;
