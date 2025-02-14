@@ -49,6 +49,7 @@ inside the new function scope cannot be accessed from the parent scope; however,
 function scope has access to variables in the parent scope.
 To create a variable with function scope, we must declare the variable with the var
 keyword. For example:
+
 ```
 var example = 5;
 The following snippet provides an example of function scope:
@@ -85,6 +86,7 @@ in the scope block it is defined. Functions and variables declared using var are
 in JavaScript; that is, a function or a variable can be used before it has been declared.
 
 The following code demonstrates this, as follows:
+
 ```
 example = 5; // Assign value
 console.log( example ); // Expect output: 5
@@ -93,7 +95,6 @@ Snippet 1.2: Function Scope Hoisting
 ```
 
 <h3>Note</h3>
-
 Since a hoisted variable that's been declared with var can be used before it
 is declared, we have to be careful to not use that variable before it has been
 assigned a value. If a variable is accessed before it has been assigned a value, it will
@@ -101,12 +102,12 @@ return the value as undefined, which can cause problems, especially if variables
 are used in the global scope.
 
 <h3>Block Scope</h3>
-
 A new block scope in JavaScript is created with curly braces ({}). A pair of curly braces
 can be placed anywhere in the code to define a new scope block. If statements, loops,
 functions, and any other curly brace pairs will have their own block scope. This includes
 floating curly brace pairs not associated with a keyword (if, for, etc). The code in the
 following snippet is an example of the block scope rules:
+
 ```
 // Top level scope
 function scopeExample() {
@@ -140,13 +141,13 @@ example = 5;
 console.log( example ); // Expected output: 5
 ```
 
-Note
+<h3>Note</h3>
 If a variable is accessed inside the Temporal Dead Zone, then a runtime error will
 be thrown. This is important because it allows our code to be built more robustly
 with fewer semantic errors arising from variable declaration.
 To get a better understanding of scope blocks, refer to the following table:
 
-Figure 1.1: Function Scope versus Block Scope
+<h3>Figure 1.1: Function Scope versus Block Scope</h3>
 
 In summary, scope provides us with a way to separate variables and restrict access
 between blocks of code. Variable identifier names can be reused between blocks
@@ -160,22 +161,25 @@ variables that are added are not hoisted and are subject to the TDZ.
 
 <h3>Exercise 1: Implementing Block Scope</h3>
 To implement block scope principles with variables, perform the following steps:
-  1. Create a function called fn1 as shown (function fn1()).
-  2. Log the string as scope 1.
-  3. Create a variable called scope with the value of 5.
-  4. Log the value of the variable called scope.
-  5. Create a new block scope inside of the function with curly braces ({}).
-  6. Inside the new scope block, log the string called scope 2.
-  7. Create a new variable called scope, inside the scope block and assign the value different scope.
-  8. Log the value variable scope inside our block scope (scope 2).
-  9. Outside of the block scope defined in step 5 (scope 2), create a new block scope (use curly braces).
-  10. Log the string called scope 3.
-  11. Create a variable inside the scope block (scope 3) with the same name as the variables (call it scope) 
-  and assign it the value a third scope.
-  12. Log the new variable's value.
-  13. Call fn1 and observe its output Code
+<ol type="1">
+  <li>1. Create a function called fn1 as shown (function fn1()).</li>
+  <li>2. Log the string as scope 1.</li>
+  <li>3. Create a variable called scope with the value of 5.</li>
+  <li>4. Log the value of the variable called scope.</li>
+  <li>5. Create a new block scope inside of the function with curly braces ({}).</li>
+  <li>6. Inside the new scope block, log the string called scope 2.</li>
+  <li>7. Create a new variable called scope, inside the scope block and assign the value different scope.</li>
+  <li>8. Log the value variable scope inside our block scope (scope 2).</li>
+  <li>9. Outside of the block scope defined in step 5 (scope 2), create a new block scope (use curly braces).</li>
+  <li>10. Log the string called scope 3.</li>
+  <li>11. Create a variable inside the scope block (scope 3) with the same name as the variables (call it scope) 
+  and assign it the value a third scope.</li>
+  <li>12. Log the new variable's value.</li>
+  <li>13. Call fn1 and observe its output Code.</li>
+</ol>
 
 index.js:
+
 ```
 function fn1(){
   console.log('Scope 1');
@@ -193,15 +197,15 @@ function fn1(){
   }
 }
 ```
+
 // fn1();
 // https://bit.ly/2RoOotW
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Snippet 1.5: Block implementation output</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-Outcome
-
-Figure 1.2: Scope outputs
+<h3>Outcome</h3>
+<h3>Figure 1.2: Scope outputs</h3>
 
 You have successfully implemented block scope in JavaScript.
 In this section, we covered the two types of JavaScript scope, function and block scope,
@@ -255,6 +259,7 @@ aspect of the functionality of var:
 // Declared and assigned
 var example = { prop1: 'test' };
 console.log( 'example:', example );
+
 // Expect output: example: {prop1: "test"}
 // Value reassigned
 example = 5;
@@ -276,6 +281,7 @@ following code:
 // Declared and initialized
 let example = { prop1: 'test' };
 console.log( 'example:', example );
+
 // Expect output: example: {prop1: 'test"}
 // Value reassigned
 example = 5;
@@ -334,12 +340,13 @@ updated. This is shown in the following code:
 ```
 // Declared and initialized
 const example = { prop1: 'test' };
+
 // Variable reassigned
 example = 5;
+
 // Expect TypeError error because variable was declared with const
 // Object property updated
-example.prop1 = 5;
-// Expect no error because subproperty was modified
+example.prop1 = 5;  // Expect no error because subproperty was modified
 ```
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -361,29 +368,31 @@ hoisted. let is not constant, while, const is constant but immutable.
 <h3>Exercise 2: Utilizing Variables</h3>
 To utilize the var, const, and let variable declaration keywords for variable hoisting and
 reassignment properties, perform the following steps:
-  1. Log the string Hoisted before assignment: and the value of the hoisted variable.
-  2. Define a variable called hoisted with the keyword var and assign it the value this got hoisted.
-  3. Log the string hoisted after assignment: and the value of the hoisted variable.
-  4. Create a try-catch block.
-  5. Inside the try block, log the value of the variable called notHoisted1.
-  6. Inside the catch block, give the catch block the err parameter, then log the string Not 
-  hoisted1 with error: and the value of err.message.
-  7. After the try-catch block, create the notHoisted1 variable with the let keyword 
-  and assign the value 5.
-  8. Log the string notHoisted1 after assignment and the value of notHoisted1.
-  9. Create another try-catch block.
-  10. Inside the try block, log the value of the notHoisted2 variable.
-  11. Inside the catch block, give the catch block the err parameter, then log the string
-  Not hoisted2 with error: and the value of err.message.
-  12. After the second try-catch block, create the notHoisted2 variable with the keyword
-  const and assign the value [1,2,3].
-  13. Log the string notHoisted2 after assignment and the value of notHoisted2.
-  14. Define a final try catch block.
-  15. Inside the try block, reassign notHoisted2 to the new value string.
-  16. Inside the catch block, give the catch block the err parameter, then log the string Not 
-  hoisted 2 was not able to be changed.
-  17. After the try-catch block, push the value 5 onto the array in notHoisted2.
-  18. Log the string notHoisted2 updated. Now is: and the value of notHoisted2.
+<ol type="1">
+  <li>1. Log the string Hoisted before assignment: and the value of the hoisted variable.</li>
+  <li>2. Define a variable called hoisted with the keyword var and assign it the value this got hoisted.</li>
+  <li>3. Log the string hoisted after assignment: and the value of the hoisted variable.</li>
+  <li>4. Create a try-catch block.</li>
+  <li>5. Inside the try block, log the value of the variable called notHoisted1.</li>
+  <li>6. Inside the catch block, give the catch block the err parameter, then log the string Not 
+  hoisted1 with error: and the value of err.message.</li>
+  <li>7. After the try-catch block, create the notHoisted1 variable with the let keyword 
+  and assign the value 5.</li>
+  <li>8. Log the string notHoisted1 after assignment and the value of notHoisted1.</li>
+  <li>9. Create another try-catch block.</li>
+  <li>10. Inside the try block, log the value of the notHoisted2 variable.</li>
+  <li>11. Inside the catch block, give the catch block the err parameter, then log the string
+  Not hoisted2 with error: and the value of err.message.</li>
+  <li>12. After the second try-catch block, create the notHoisted2 variable with the keyword
+  const and assign the value [1,2,3].</li>
+  <li>13. Log the string notHoisted2 after assignment and the value of notHoisted2.</li>
+  <li>14. Define a final try catch block.</li>
+  <li>15. Inside the try block, reassign notHoisted2 to the new value string.</li>
+  <li>16. Inside the catch block, give the catch block the err parameter, then log the string Not 
+  hoisted 2 was not able to be changed.</li>
+  <li>17. After the try-catch block, push the value 5 onto the array in notHoisted2.</li>
+  <li>18. Log the string notHoisted2 updated. Now is: and the value of notHoisted2.</li>
+</ol>
 
 Code
 index.js:
@@ -448,7 +457,6 @@ denoted with the following syntax:
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Snippet 1.13: Arrow function syntax</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 As you can see from the preceding syntax, arrow functions are a more concise way of
 writing functions in JavaScript. They can make our code more concise and easier to
 read.
@@ -457,21 +465,25 @@ Arrow function syntax can also vary, depending on several factors. Syntax can va
 slightly depending on the number of arguments passed in to the function, and the
 number of lines of code in the function body. The special syntax conditions are outlined
 briefly in the following list:
-  • Single input argument
-  • No input arguments
-  • Single line function body
-  • Single expression broken over multiple lines
-  • Object literal return value
+<ul>
+  <li>• Single input argument</li>
+  <li>• No input arguments</li>
+  <li>• Single line function body</li>
+  <li>• Single expression broken over multiple lines</li>
+  <li>• Object literal return value</li>
+</ul>
 
 <h3>Exercise 3: Converting Arrow Functions</h3>
 To demonstrate the simplified syntax by converting a standard function into an arrow
 function, perform the following steps:
-  1. Create a function that takes in parameters and returns the sum of the two parameters. 
-    Save the function into a variable called fn1.
-  2. Convert the function you just created to an arrow function and save into another
+<ol type="1">
+  <li>1. Create a function that takes in parameters and returns the sum of the two parameters. 
+    Save the function into a variable called fn1.</li>
+  <li>2. Convert the function you just created to an arrow function and save into another
     variable called fn2. To convert the function, remove the function keyword. Next, place an arrow
-	between the function arguments and the function body.
-  3. Call both functions and compare the output.
+	between the function arguments and the function body.</li>
+  <li>3. Call both functions and compare the output.</li>
+</ol>
 
 Code
 index.js:
@@ -479,7 +491,7 @@ index.js:
 ```
 const fn1 = function( a, b ) { return a + b; };
 const fn2 = ( a, b ) => { return a + b; };
-Introducing Arrow Functions | 15
+
 console.log( fn1( 3 ,5 ), fn2( 3, 5 ) );
 ```
 
@@ -509,6 +521,7 @@ are shown in the following code:
 ```
 // Single argument arrow function
 arg1 => { /* Do function stuff here */ }
+
 // Non simple identifier function argument
 ( arg1 = 10 ) => { /* Do function stuff here */ }
 ```
@@ -536,9 +549,9 @@ code:
 ```
 // Multiple line body arrow function
 ( arg1, arg2 ) => {
-console.log( `This is arg1: ${arg1}` );
-console.log( `This is arg2: ${arg2}` );
-/* Many more lines of code can go here */
+  console.log( `This is arg1: ${arg1}` );
+  console.log( `This is arg2: ${arg2}` );
+  /* Many more lines of code can go here */
 }
 // Single line body arrow function
 ( arg1, arg2 ) => console.log( `This is arg1: ${arg1}` )
@@ -572,14 +585,14 @@ single line of code. This is shown in the following code:
 ```
 // Arrow function with a single line body
 // Assume numArray is an array of numbers
-( numArray ) => numArray.filter( n => n > 5).map( n => n - 1 ).every( n => n
-< 10 )
+( numArray ) => numArray.filter( n => n > 5).map( n => n - 1 ).every( n => n < 10 )
+
 // Arrow function with a single line body broken into multiple lines
 // Assume numArray is an array of numbers
 ( numArray ) => (
-numArray.filter( n => n > 5)
-.map( n => n - 1 )
-.every( n => n < 10 )
+  numArray.filter( n => n > 5)
+  .map( n => n - 1 )
+  .every( n => n < 10 )
 )
 ```
 
@@ -628,27 +641,30 @@ multiple lines for readability.
 <h3>Exercise 4: Upgrading Arrow Functions</h3>
 
 To utilize the ES6 arrow function syntax to write functions, perform the following steps:
-  1. Refer to the exercises/exercise4/exercise.js file and perform the updates in this file.
-  2. Convert fn1 with basic ES6 syntax.
-    Remove the function keyword before the function arguments. Add an arrow between the function 
-	arguments and function body.
-  3. Convert fn2 with single statement function body syntax.
-    Remove the function keyword before the function arguments. Add an arrow
-	between the function arguments and function body.
-	Remove the curly braces ({}) around the function body. Remove the return
-	keyword.
-  4. Convert fn3 with Single input argument syntax.
-    Remove the function keyword before the function arguments. Add an arrow
-	between the function arguments and function body.
-	Remove the parentheses around the function input argument.
-  5. Convert fn4 with no input argument syntax.
-    Remove the function keyword before the function arguments. Add an arrow
-	between the function arguments and function body.
-  6. Convert fn5 with object literal syntax.
-    Remove the function keyword before the function arguments. Add an arrow 
-	between the function arguments and function body.
-	Remove the curly braces ({}) around the function body. Remove the return keyword.
-	Surround the returned object with parentheses.
+<ol type="1">
+  <li>1. Refer to the exercises/exercise4/exercise.js file and perform the updates in this file.</li>
+  <li>2. Convert fn1 with basic ES6 syntax.<br>
+    Remove the function keyword before the function arguments.<br>
+	Add an arrow between the function arguments and function body.</li>
+  <li>3. Convert fn2 with single statement function body syntax.<br>
+    Remove the function keyword before the function arguments.<br>
+	Add an arrow between the function arguments and function body.<br>
+	Remove the curly braces ({}) around the function body.<br>
+	Remove the return keyword.</li>
+  <li>4. Convert fn3 with Single input argument syntax.<br>
+    Remove the function keyword before the function arguments.<br>
+	Add an arrow between the function arguments and function body.<br>
+	Remove the parentheses around the function input argument.</li>
+  <li>5. Convert fn4 with no input argument syntax.<br>
+    Remove the function keyword before the function arguments.<br>
+	Add an arrow between the function arguments and function body.</li>
+  <li>6. Convert fn5 with object literal syntax.<br>
+    Remove the function keyword before the function arguments. 
+	Add an arrow between the function arguments and function body.<br>
+	Remove the curly braces ({}) around the function body.<br>
+	Remove the return keyword.<br>
+	Surround the returned object with parentheses.</li>
+</ol>
 
 Code
 index.js:
@@ -675,11 +691,13 @@ to greatly simplify function declaration in JavaScript. First, we covered the ba
 for arrow functions: ( arg1, arg2, argn ) => { /* function body */ }. We proceeded
 to cover the five special syntax cases for advanced arrow functions, as outlined in the
 following list:
-  • Single input argument: arg1 => { /* function body */ }
-  • No input arguments: ( ) => { /* function body */ }
-  • Single line function body: ( arg1, arg2, argn ) => /* single line */
-  • Single expression broken over multiple lines: ( arg1, arg2, argn ) => ( /* multi line single expression */ )
-  • Object literal return value: ( arg1, arg2, argn ) => ( { /* object literal */ } )
+<ul>
+  <li>• Single input argument: arg1 => { /* function body */ }</li>
+  <li>• No input arguments: ( ) => { /* function body */ }</li>
+  <li>• Single line function body: ( arg1, arg2, argn ) => /* single line */</li>
+  <li>• Single expression broken over multiple lines: ( arg1, arg2, argn ) => ( /* multi line single expression */ )</li>
+  <li>• Object literal return value: ( arg1, arg2, argn ) => ( { /* object literal */ } )</li>
+</ul>
 
 <h3>Learning Template Literals</h3>
 
@@ -692,8 +710,8 @@ expression }). The template literal syntax is shown in the following code:
 
 ```
 const example = "pretty";
-console.log( `Template literals are ${ example } useful!!!` );
-// Expected output: Template literals are pretty useful!!!
+
+console.log( `Template literals are ${ example } useful!!!` );  // Expected output: Template literals are pretty useful!!!
 ```
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -715,6 +733,7 @@ achieve the same expected output. An example of this is shown in the following c
 ```
 // Using normal strings
 console.log( 'This is line 1\nThis is line 2' );
+
 // Expected output: This is line 1
 // This is line 2
 // Using template literals
@@ -731,15 +750,18 @@ This is line 2` );
 
 To convert standard string objects to template literals to demonstrate the power of
 template literal expressions, perform the following steps:
-  1. Create two variables, a and b, and save numbers into them.
-  2. Log the sum of a and b in the format a + b is equal to <result> using normal strings.
-  3. Log the sum of a and b in the format a + b is equal to <result> using a single template literal.
+<ol type="1">
+  <li>1. Create two variables, a and b, and save numbers into them.</li>
+  <li>2. Log the sum of a and b in the format a + b is equal to <result> using normal strings.</li>
+  <li>3. Log the sum of a and b in the format a + b is equal to <result> using a single template literal.</li>
+</ol>
   
 Code
 index.js:
 
 ```
 let a = 5, b = 10;
+
 console.log( a + ' + ' + b + ' is equal to ' + ( a + b ) );
 console.log( `${a} + ${b} is equal to ${a + b}` );
 ```
@@ -762,8 +784,9 @@ the following code:
 
 ```
 function javascriptOrCPlusPlus() { return 'JavaScript'; }
+
 const outputLiteral = `We are learning about ${ `Professional ${
-javascriptOrCPlusPlus() }` }`
+  javascriptOrCPlusPlus() }` }`
 ```
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -801,9 +824,10 @@ of the split template literal. This is shown in the following code:
 
 ```
 function tagFunction( strings ){ console.log( strings.raw[0] ); }
-tagFunction`This is line 1. \n This is line 2.`
+  tagFunction`This is line 1. \n This is line 2.`
+
 // Expected output: "This is line 1. \n This is line 2." The characters
-//'\' and 'n' are not parsed into a newline character
+// '\' and 'n' are not parsed into a newline character
 ```
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -819,7 +843,7 @@ with the tagged template function. These functions give you a way to perform com
 string manipulation via a special function. The tagged template functions also give
 access to the raw strings as they were entered, ignoring any escape sequences.
 
-Exercise 6: Template Literal Conversion
+<h3>Exercise 6: Template Literal Conversion</h3>
 You are building a website for a real estate company. You must build a function that
 takes in an object with property information and returns a formatted string that states
 the property owner, where the property is located (address), and how much they are
@@ -838,14 +862,15 @@ selling it for (price). Consider the following object as input:
 <h2>Snippet 1.28: Object Input</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 To utilize a template literal to pretty-print an object, perform the following steps:
-  1. Create a function called parseHouse that takes in an object.
-  2. Return a template literal from the function. Using expressions, embed the owner,
+<ol type="1">
+  <li>1. Create a function called parseHouse that takes in an object.</li>
+  <li>2. Return a template literal from the function. Using expressions, embed the owner,
     address, and price in the format &lt;Owner&gt; is selling the property at &lt;address&gt;
-	for &lt;price&gt;.
-  3. Create a variable called house and save the following object into it: { address: "123 
-    Main St, San Francisco CA, USA", floors: 2, price: 5000000, owner: "John Doe" }
-  4. Call the parseHouse function and pass in the house variable.
-  5. Log the output.
+	for &lt;price&gt;.</li>
+  <li>3. Create a variable called house and save the following object into it: { address: "123 
+    Main St, San Francisco CA, USA", floors: 2, price: 5000000, owner: "John Doe" }</li>
+  <li>4. Call the parseHouse function and pass in the house variable.</li>
+  <li>5. Log the output.</li>
 
 Code
 index.js:
@@ -869,10 +894,9 @@ console.log( parseHouse( house ) );
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 https://bit.ly/2RklKKH
 
-Outcome
+<h3>Outcome</h3>
 
 <h3>Figure 1.8: Template literal output</h3>
-
 You have successfully utilized a template literal to pretty-print an object.
 In this section, we covered template literals. Template literals upgrade strings by
 allowing us to nest expressions inside them that are parsed at runtime. Expressions
@@ -883,20 +907,17 @@ we covered template literal tagging and tagging functions, which allow us to per
 more complex template literal parsing and creation.
 
 <h3>Enhanced Object Properties</h3>
-
 ECMAScript 6 added several enhancements to object literals as part of the ES6
 syntactic sugar. ES6 added three ways to simplify the creation of object literals. These
 simplifications include a more concise syntax for initializing object properties from
 variables, a more concise syntax for defining function methods, and computed object
 property names.
 
-Note
-
+<h3>Note</h3>
 Syntactic sugar is a syntax that is designed to make expressions easier to read and
 express. It makes the syntax "sweeter" because code can be expressed concisely.
 
 <h3>Object Properties</h3>
-
 The shorthand for initializing object properties allows you to make more concise
 objects. In ES5, we needed to define the object properties with a key name and a value,
 as shown in the following code:
@@ -916,11 +937,10 @@ getPersionES5( 'Zachary', 23, 195 )  // Expected output: { name: 'Zachary', age:
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Snippet 1.30: ES5 object properties</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-Notice the repetition in the object literal returned by the function. We name the
-property in the object after variable name causing duplication (<code>name: name</
-code>). In ES6, we can shorthand each property and remove the repetition. In ES6, we
-can simply state the variable in the object literal declaration and it will create a property
+Notice the repetition in the object literal returned by the function. We name the 
+property in the object after variable name causing duplication (<code>name: name</code>). 
+In ES6, we can shorthand each property and remove the repetition. In ES6, we 
+can simply state the variable in the object literal declaration and it will create a property 
 with a key that matches the variable name and a value that matches the variable value.
 This is shown in the following code:
 
@@ -944,7 +964,6 @@ in a large object literal declaration, we can save a lot of space and repetition
 this new shorthand.
 
 <h3>Function Declarations</h3>
-
 ES6 also added a shorthand for declaring function methods inside objects. In ES5,
 we had to state the property name, then define it as a function. This is shown in the
 following example:
@@ -964,7 +983,6 @@ getPersonES5( 'Zachary', 23, 195 ).getAge()  // Expected output: 23
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Snippet 1.32: ES5 function properties</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
 In ES6, we can define a function but with much less work. As with the property
 declaration, we don't need a key and value pair to create the function. The function
 name becomes the key name. This is shown in the following code:
@@ -988,7 +1006,7 @@ Notice the difference in the function declaration. We omit the function keyword 
 the colon after the property key name. Once again, this saves us a bit of space and
 simplifies things a little.
 
-Computed Properties
+<h3>Computed Properties</h3>
 ES6 also added a new, efficient way to create property names from variables. This is
 through computed property notation. As we already know, in ES5, there is only one
 way to create a dynamic property whose name is specified by a variable; this is through
@@ -1060,18 +1078,20 @@ value of pi, the ratio to convert inches to feet, a function that sums two argum
 a function that subtracts two arguments. Log the object after it has been created.
 To create objects using ES6 enhanced object properties and demonstrate the simplified
 syntax, perform the following steps:
-  1. Create an object and save it into the exportObject variable.
-  2. Create a variable called PI that contains the value of pi (3.1415).
-  3. Create a variable called INCHES_TO_FEET and save the value of the inches to feet conversion 
-    ratio (0.083333).
-	Using ES6 enhanced property notation, add a property called PI from the variable 
-	PI. Add a property called INCHES_TO_FEET from the INCHES_TO_FEET variable, which 
-	contains the inches to feet conversion ratio.
+<ol type="1">
+  <li>1. Create an object and save it into the exportObject variable.</li>
+  <li>2. Create a variable called PI that contains the value of pi (3.1415).</li>
+  <li>3. Create a variable called INCHES_TO_FEET and save the value of the inches to feet conversion 
+    ratio (0.083333).<br>
+	Using ES6 enhanced property notation, add a property called PI from the variable PI.<br>
+	Add a property called INCHES_TO_FEET from the INCHES_TO_FEET variable, which 
+	contains the inches to feet conversion ratio.<br>
 	Add a function property called sum that takes in two input arguments and returns 
-	the sum of the two input arguments. 
+	the sum of the two input arguments.<br>
 	Add a function property called subtract that takes in two input arguments and 
-	returns the subtraction of the two input arguments.
-  4. Log the object exportObject.
+	returns the subtraction of the two input arguments.</li>
+  <li>4. Log the object exportObject.</li>
+</ol>
 
 Code
 index.js:
@@ -1099,7 +1119,7 @@ console.log( exportObject );
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 https://bit.ly/2RLdHWk
 
-Outcome
+<h3>Outcome</h3>
 
 <h3>Figure 1.9: Enhanced object properties output</h3>
 You have successfully created objects using ES6 enhanced object properties.
@@ -1171,7 +1191,7 @@ console.log( name4 ); // Expected output: undefined
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Snippet 1.38: Array destructuring with mismatched variable and array items</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-Note
+<h3>Note</h3>
 We must be careful when destructuring arrays to make sure that we don't
 unintentionally assume that a variable will contain a value. The value of the
 variable could be set to undefined if the array is not long enough.
@@ -1236,13 +1256,15 @@ console.log( b ); // Expected output: 10
 <h3>Exercise 8: Array Destructuring</h3>
 To extract values from an array using array destructuring assignment, perform the
 following steps:
-  1. Create an array with three values, 1, 2, and 3, and save it into a variable called data.
-  2. Destructure the array created with a single expression.
-    Destructure the first array value into a variable called a. Skip the second value of
-	the array.
+<ol type="1">
+  <li>1. Create an array with three values, 1, 2, and 3, and save it into a variable called data.</li>
+  <li>2. Destructure the array created with a single expression.<br>
+    Destructure the first array value into a variable called a. 
+	Skip the second value of the array.<br>
 	Destructure the third value into a variable called b. Attempt to destructure a
-	fourth value into a variable called c and provide a default value of 4.
-  3. Log the value of all of the variables.
+	fourth value into a variable called c and provide a default value of 4.</li>
+  <li>3. Log the value of all of the variables.</li>
+</ol>
   
 Code
 index.js:
@@ -1254,10 +1276,12 @@ const [ a, , b, c = 4 ] = data;
 console.log( a, b, c );
 ```
 
-Snippet 1.42: Array destructuring
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h2>Snippet 1.42: Array destructuring</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 https://bit.ly/2D2Hm5g
 
-Outcome
+<h3>Outcome</h3>
 
 <h3>Figure 1.10: Destructured variable's output</h3>
 You have successfully applied an array destructuring assignment to extract values from
@@ -1281,7 +1305,7 @@ the argument is being applied to. If the operator is applied to an iterable obje
 object, and so on), then it is the spread operator. If the operator is applied to function
 arguments, then it is the rest operator.
 
-Note
+<h3>Note</h3>
 In JavaScript, something considered iterable if something (generally values or key/
 value pairs) can be stepped through one at a time. For example, an array is iterable
 because the items in the array can be stepped through one at a time. Objects are
@@ -1420,7 +1444,7 @@ We then destructured this object into the variables firstName and lastName. Noti
 that the names of the variables and the object parameters match. This is shown in the
 following example:
 
-Note
+<h3>Note</h3>
 When doing basic object destructuring, the name of the parameter in the object
 and the name of the variable we are assigning it to must match. If there is no
 matching parameter for a variable we are trying to destructure, then the variable
@@ -1476,24 +1500,33 @@ console.log( middleName ); // Expected output: 'Chris'
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Snippet 1.50: Object destructuring with default values</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-
 <h2>Variable types;</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 var, let, const;
 
 
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Arrow Functions;</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Classes &amp; Modules;</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Transpilation;</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Iterators &amp; Generators;</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Hoisting;</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
