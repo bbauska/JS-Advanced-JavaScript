@@ -1495,7 +1495,466 @@ console.log( middleName ); // Expected output: 'Chris'
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Arrow Functions;</h2>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+```
+// Traditional function
+const add = function(a, b) {
+  return a + b;
+};
 
+// Arrow function (concise)
+const addArrow = (a, b) => a + b;
+
+// Arrow function (block body)
+const greet = (name) => {
+  console.log(`Hello, ${name}`);
+  return `Greeting for ${name}`;
+};
+
+// Single parameter (parentheses optional)
+const square = n => n * n;
+```
+
+<h4>Syntax</h4>
+
+```
+() => expression
+
+param => expression
+
+(param) => expression
+
+(param1, paramN) => expression
+
+() => {
+  statements
+}
+
+param => {
+  statements
+}
+
+(param1, paramN) => {
+  statements
+}
+```
+
+<p>Rest parameters, default parameters, and destructuring within params are supported, and always 
+require parentheses:</p>
+
+<h4>JavaScript</h4>
+
+```
+(a, b, ...r) => expression
+(a = 400, b = 20, c) => expression
+([a, b] = [10, 20]) => expression
+({ a, b } = { a: 10, b: 20 }) => expression
+```
+
+<p>Arrow functions can be async by prefixing the expression with the async keyword.</p>
+
+<h4>JavaScript</h4>
+
+```
+async param => expression
+async (param1, param2, ...paramN) => {
+  statements
+}
+```
+
+<h3>Description</h3>
+<p>Let's decompose a traditional anonymous function down to the simplest arrow function step-by-step. 
+Each step along the way is a valid arrow function.</p>
+
+<h4>JavaScript</h4>
+
+```
+// Traditional anonymous function
+(function (a) {
+  return a + 100;
+});
+
+// 1. Remove the word "function" and place arrow between the argument and opening body brace
+(a) => {
+  return a + 100;
+};
+
+// 2. Remove the body braces and word "return" — the return is implied.
+(a) => a + 100;
+
+// 3. Remove the parameter parentheses
+a => a + 100;
+```
+
+<p>In the example above, both the parentheses around the parameter and the braces around the function body may be omitted. However, they can only be omitted in certain cases.</p>
+
+<p>The parentheses can only be omitted if the function has a single simple parameter. If it has multiple parameters, no parameters, or default, destructured, or rest parameters, the parentheses around the parameter list are required.</p>
+
+```
+// Traditional anonymous function
+(function (a, b) {
+  return a + b + 100;
+});
+
+// Arrow function
+(a, b) => a + b + 100;
+
+const a = 4;
+const b = 2;
+
+// Traditional anonymous function (no parameters)
+(function () {
+  return a + b + 100;
+});
+
+// Arrow function (no parameters)
+() => a + b + 100;
+```
+
+<p>The braces can only be omitted if the function directly returns an expression. If the body has statements, the braces are required — and so is the return keyword. Arrow functions cannot guess what or when you want to return.</p>
+
+```
+// Traditional anonymous function
+(function (a, b) {
+  const chuck = 42;
+  return a + b + chuck;
+});
+
+// Arrow function
+(a, b) => {
+  const chuck = 42;
+  return a + b + chuck;
+};
+```
+
+<p>Arrow functions are not inherently associated with a name. If the arrow function needs to call itself, use a named function expression instead. You can also assign the arrow function to a variable, allowing you to refer to it through that variable.</p>
+
+```
+// Traditional Function
+function bob(a) {
+  return a + 100;
+}
+
+// Arrow Function
+const bob2 = (a) => a + 100;
+```
+
+<h4>Function body</h4>
+<p>Arrow functions can have either an expression body or the usual block body.</p>
+
+<p>In an expression body, only a single expression is specified, which becomes the implicit return value. In a block body, you must use an explicit return statement.</p>
+
+```
+const func = (x) => x * x;
+// expression body syntax, implied "return"
+
+const func2 = (x, y) => {
+  return x + y;
+};
+// with block body, explicit "return" needed
+```
+
+<p>Returning object literals using the expression body syntax (params) => { object: literal } does not work as expected.</p>
+
+```
+const func = () => { foo: 1 };
+// Calling func() returns undefined!
+
+const func2 = () => { foo: function () {} };
+// SyntaxError: function statement requires a name
+
+const func3 = () => { foo() {} };
+// SyntaxError: Unexpected token '{'
+```
+
+<p>This is because JavaScript only sees the arrow function as having an expression body if the token following the arrow is not a left brace, so the code inside braces ({}) is parsed as a sequence of statements, where foo is a label, not a key in an object literal.</p>
+
+<p>To fix this, wrap the object literal in parentheses:</p>
+
+```
+const func = () => ({ foo: 1 });
+```
+
+<h4>Cannot be used as methods</h4>
+<p>Arrow function expressions should only be used for non-method functions because they do not have their own this. Let's see what happens when we try to use them as methods:</p>
+
+```
+"use strict";
+
+const obj = {
+  i: 10,
+  b: () => console.log(this.i, this),
+  c() {
+    console.log(this.i, this);
+  },
+};
+
+obj.b(); // logs undefined, Window { /* … */ } (or the global object)
+obj.c(); // logs 10, Object { /* … */ }
+```
+
+<p>Another example involving Object.defineProperty():</p>
+
+```
+"use strict";
+
+const obj = {
+  a: 10,
+};
+
+Object.defineProperty(obj, "b", {
+  get: () => {
+    console.log(this.a, typeof this.a, this); // undefined 'undefined' Window { /* … */ } (or the global object)
+    return this.a + 10; // represents global object 'Window', therefore 'this.a' returns 'undefined'
+  },
+});
+```
+
+<p>Because a class's body has a this context, arrow functions as class fields close over the class's this context, and the this inside the arrow function's body will correctly point to the instance (or the class itself, for static fields). However, because it is a closure, not the function's own binding, the value of this will not change based on the execution context.</p>
+
+```
+class C {
+  a = 1;
+  autoBoundMethod = () => {
+    console.log(this.a);
+  };
+}
+
+const c = new C();
+c.autoBoundMethod(); // 1
+const { autoBoundMethod } = c;
+autoBoundMethod(); // 1
+// If it were a normal method, it should be undefined in this case
+```
+
+<p>Arrow function properties are often said to be "auto-bound methods", because the equivalent with normal methods is:</p>
+
+
+```
+class C {
+  a = 1;
+  constructor() {
+    this.method = this.method.bind(this);
+  }
+  method() {
+    console.log(this.a);
+  }
+}
+```
+
+<blockquote>
+Note: Class fields are defined on the instance, not on the prototype, so every instance creation would create a new function reference and allocate a new closure, potentially leading to more memory usage than a normal unbound method.
+</blockquote>
+
+<p>For similar reasons, the call(), apply(), and bind() methods are not useful when called on arrow functions, because arrow functions establish this based on the scope the arrow function is defined within, and the this value does not change based on how the function is invoked.</p>
+
+<h4>No binding of arguments</h4>
+<p>Arrow functions do not have their own arguments object. Thus, in this example, arguments is a reference to the arguments of the enclosing scope:</p>
+
+```
+function foo(n) {
+  const f = () => arguments[0] + n; // foo's implicit arguments binding. arguments[0] is n
+  return f();
+}
+
+foo(3); // 3 + 3 = 6
+```
+
+<p>In most cases, using rest parameters is a good alternative to using an arguments object.</p>
+
+```
+function foo(n) {
+  const f = (...args) => args[0] + n;
+  return f(10);
+}
+
+foo(1); // 11
+```
+
+<h4>Cannot be used as constructors</h4>
+<p>Arrow functions cannot be used as constructors and will throw an error when called with new. They also do not have a prototype property.</p>
+
+```
+const Foo = () => {};
+const foo = new Foo(); // TypeError: Foo is not a constructor
+console.log("prototype" in Foo); // false
+```
+
+<h4>Cannot be used as generators</h4>
+<p>The yield keyword cannot be used in an arrow function's body (except when used within generator functions further nested within the arrow function). As a consequence, arrow functions cannot be used as generators.</p>
+
+<h4>Line break before arrow</h4>
+<p>An arrow function cannot contain a line break between its parameters and its arrow.</p>
+
+```
+const func = (a, b, c)
+  => 1;
+// SyntaxError: Unexpected token '=>'
+```
+
+<p>For the purpose of formatting, you may put the line break after the arrow or use parentheses/braces around the function body, as shown below. You can also put line breaks between parameters.</p>
+
+```
+const func = (a, b, c) =>
+  1;
+
+const func2 = (a, b, c) => (
+  1
+);
+
+const func3 = (a, b, c) => {
+  return 1;
+};
+
+const func4 = (
+  a,
+  b,
+  c,
+) => 1;
+```
+
+<h4>Precedence of arrow</h4>
+<p>Although the arrow in an arrow function is not an operator, arrow functions have special parsing rules that interact differently with operator precedence compared to regular functions.</p>
+
+```
+let callback;
+
+callback = callback || () => {};
+// SyntaxError: invalid arrow-function arguments
+```
+
+<p>Because => has a lower precedence than most operators, parentheses are necessary to avoid callback || () being parsed as the arguments list of the arrow function.</p>
+
+```
+callback = callback || (() => {});
+```
+
+<h3>Examples</h3>
+<h4>Using arrow functions</h4>
+
+```
+// An empty arrow function returns undefined
+const empty = () => {};
+
+(() => "foobar")();
+// Returns "foobar"
+// (this is an Immediately Invoked Function Expression)
+
+const simple = (a) => (a > 15 ? 15 : a);
+simple(16); // 15
+simple(10); // 10
+
+const max = (a, b) => (a > b ? a : b);
+
+// Easy array filtering, mapping, etc.
+const arr = [5, 6, 13, 0, 1, 18, 23];
+
+const sum = arr.reduce((a, b) => a + b);
+// 66
+
+const even = arr.filter((v) => v % 2 === 0);
+// [6, 0, 18]
+
+const double = arr.map((v) => v * 2);
+// [10, 12, 26, 0, 2, 36, 46]
+
+// More concise promise chains
+promise
+  .then((a) => {
+    // …
+  })
+  .then((b) => {
+    // …
+  });
+
+// Arrow functions without parameters
+setTimeout(() => {
+  console.log("I happen sooner");
+  setTimeout(() => {
+    // deeper code
+    console.log("I happen later");
+  }, 1);
+}, 1);
+```
+
+<h4>Using call, bind, and apply</h4>
+<p>The call(), apply(), and bind() methods work as expected with traditional functions, because we establish the scope for each of the methods:</p>
+
+```
+const obj = {
+  num: 100,
+};
+
+// Setting "num" on globalThis to show how it is NOT used.
+globalThis.num = 42;
+
+// A traditional function to operate on "this"
+function add(a, b, c) {
+  return this.num + a + b + c;
+}
+
+console.log(add.call(obj, 1, 2, 3)); // 106
+console.log(add.apply(obj, [1, 2, 3])); // 106
+const boundAdd = add.bind(obj);
+console.log(boundAdd(1, 2, 3)); // 106
+```
+
+<p>With arrow functions, since our add function is essentially created on the globalThis (global) scope, it will assume this is the globalThis.</p>
+
+```
+const obj = {
+  num: 100,
+};
+
+// Setting "num" on globalThis to show how it gets picked up.
+globalThis.num = 42;
+
+// Arrow function
+const add = (a, b, c) => this.num + a + b + c;
+
+console.log(add.call(obj, 1, 2, 3)); // 48
+console.log(add.apply(obj, [1, 2, 3])); // 48
+const boundAdd = add.bind(obj);
+console.log(boundAdd(1, 2, 3)); // 48
+```
+
+<p>Perhaps the greatest benefit of using arrow functions is with methods like setTimeout() and EventTarget.prototype.addEventListener() that usually require some kind of closure, call(), apply(), or bind() to ensure that the function is executed in the proper scope.</p>
+
+<p>With traditional function expressions, code like this does not work as expected:</p>
+
+```
+const obj = {
+  count: 10,
+  doSomethingLater() {
+    setTimeout(function () {
+      // the function executes on the window scope
+      this.count++;
+      console.log(this.count);
+    }, 300);
+  },
+};
+
+obj.doSomethingLater(); // logs "NaN", because the property "count" is not in the window scope.
+```
+
+<p>With arrow functions, the this scope is more easily preserved:</p>
+
+```
+const obj = {
+  count: 10,
+  doSomethingLater() {
+    // The method syntax binds "this" to the "obj" context.
+    setTimeout(() => {
+      // Since the arrow function doesn't have its own binding and
+      // setTimeout (as a function call) doesn't create a binding
+      // itself, the "obj" context of the outer method is used.
+      this.count++;
+      console.log(this.count);
+    }, 300);
+  },
+};
+
+obj.doSomethingLater(); // logs 11
+```
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h2>Classes &amp; Modules;</h2>
